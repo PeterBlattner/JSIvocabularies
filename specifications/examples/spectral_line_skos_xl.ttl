@@ -1,0 +1,35 @@
+## =============================================================
+## FILE 2 — spectral_line_skos_xl.ttl
+## SKOS-XL + DCTERMS — richer metadata, still no reasoning
+## Adds: term provenance, alternative labels, structured notes
+## =============================================================
+
+@prefix skosxl:  <http://www.w3.org/2008/05/skos-xl#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix cie:     <https://cie.co.at/eilvterm/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+cie:17-21-016
+    a skos:Concept ;
+    skos:prefLabel          "spectral line"@en ;
+    skos:prefLabel          "raie spectrale"@fr ;
+    skos:prefLabel          "Spektrallinie"@de ;
+
+    skosxl:prefLabel        cie:label-spectralline-en ;
+
+    skos:definition
+        "monochromatic radiation emitted or absorbed in a transition \
+         between two energy levels"@en ;
+
+    ## Structured provenance
+    prov:wasDerivedFrom     <https://cie.co.at/publications/cie-s-017-2020> ;
+    dcterms:created         "2020-01-01"^^xsd:date ;
+    dcterms:modified        "2024-03-15"^^xsd:date ;
+    dcterms:creator         <https://rie.co.at/> ;   ## CIE organisation URI
+    dcterms:license         <https://creativecommons.org/licenses/by/4.0/> .
+
+cie:label-spectralline-en
+    a skosxl:Label ;
+    skosxl:literalForm      "spectral line"@en ;
+    prov:generatedAtTime    "2020-01-01"^^xsd:date .

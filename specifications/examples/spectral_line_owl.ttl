@@ -1,0 +1,200 @@
+## =============================================================
+## FILE 3 — spectral_line_owl.ttl
+## OWL 2 DL encoding — enables actual reasoning
+##
+## What a reasoner can now do:
+##  (a) Classify any described phenomenon as a SpectralLine if it
+##      satisfies the formal conditions
+##  (b) Detect inconsistency if a dataset asserts something is a
+##      SpectralLine but violates the axioms
+##  (c) Infer that SpectralLine is a subclass of MonochromaticRadiation
+##      without being explicitly told
+##  (d) Detect if another vocabulary defines SpectralLine incompatibly
+## =============================================================
+
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix qudt:    <http://qudt.org/schema/qudt/> .
+
+## Ontology declaration
+@prefix cie-ont: <https://cie.co.at/ontology/ilv/> .
+
+<https://cie.co.at/ontology/ilv/>
+    a owl:Ontology ;
+    owl:versionIRI          <https://cie.co.at/ontology/ilv/1.0/> ;
+    rdfs:label              "CIE International Lighting Vocabulary — OWL layer"@en ;
+    dcterms:description
+        "Formal OWL axioms over selected ILV terms. The SKOS definitions remain authoritative for human use;        these axioms enable machine reasoning."@en ;
+    dcterms:creator         <https://cie.co.at/> ;
+    dcterms:license         <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:imports             <http://qudt.org/2.1/schema/qudt> .
+    ## Imports QUDT for physical quantities and units — avoids redefining
+    ## what "radiation" or "energy" means from scratch
+
+
+## ── Upper classes (imported or locally declared) ─────────────
+
+cie-ont:Radiation
+    a owl:Class ;
+    skos:prefLabel          "radiation"@en ;
+    skos:definition
+        "energy emitted, transferred, or received in the form of  electromagnetic waves or particles"@en ;
+    rdfs:comment
+        "Aligned with ILV 17-21-001. Root class for all radiation types  in this ontology."@en .
+
+cie-ont:MonochromaticRadiation
+    a owl:Class ;
+    rdfs:subClassOf         cie-ont:Radiation ;
+    skos:prefLabel          "monochromatic radiation"@en ;
+    skos:definition
+        "radiation characterised by a single frequency    (or, in practice, an extremely narrow frequency band)"@en ;
+    rdfs:comment
+        "Note: strict monochromaticity (single frequency) is an idealisation. Practical usage allows a very narrow linewidth.       This is a deliberate open-world assumption: the axiom does not   constrain linewidth numerically."@en .
+
+cie-ont:EnergyLevel
+    a owl:Class ;
+    skos:prefLabel          "energy level"@en ;
+    skos:definition
+        "discrete allowed energy state of a quantum mechanical system"@en ;
+    rdfs:seeAlso
+        <https://goldbook.iupac.org/terms/view/E02115> .
+    ## IUPAC Gold Book: energy level
+
+cie-ont:QuantumTransition
+    a owl:Class ;
+    skos:prefLabel          "quantum transition"@en ;
+    skos:definition
+        "change of a quantum mechanical system from one energy level to another"@en .
+
+
+## ── Object properties ─────────────────────────────────────────
+
+cie-ont:involvesDepartureLevel
+    a owl:ObjectProperty ;
+    rdfs:domain             cie-ont:QuantumTransition ;
+    rdfs:range              cie-ont:EnergyLevel ;
+    skos:prefLabel          "involves departure level"@en ;
+    rdfs:comment
+        "The energy level the system leaves during the transition."@en .
+
+cie-ont:involvesArrivalLevel
+    a owl:ObjectProperty ;
+    rdfs:domain             cie-ont:QuantumTransition ;
+    rdfs:range              cie-ont:EnergyLevel ;
+    skos:prefLabel          "involves arrival level"@en ;
+    rdfs:comment
+        "The energy level the system reaches during the transition."@en .
+
+## Enforce that a transition involves exactly two levels (departure + arrival)
+## This is the OWL encoding of "between two energy levels"
+cie-ont:QuantumTransition
+    rdfs:subClassOf
+        [ a owl:Restriction ;
+          owl:onProperty     cie-ont:involvesDepartureLevel ;
+          owl:cardinality    "1"^^xsd:nonNegativeInteger ] ;
+    rdfs:subClassOf
+        [ a owl:Restriction ;
+          owl:onProperty     cie-ont:involvesArrivalLevel ;
+          owl:cardinality    "1"^^xsd:nonNegativeInteger ] .
+
+cie-ont:associatedWithTransition
+    a owl:ObjectProperty ;
+    rdfs:domain             cie-ont:SpectralLine ;
+    rdfs:range              cie-ont:QuantumTransition ;
+    skos:prefLabel          "associated with transition"@en .
+
+cie-ont:emissionOrAbsorption
+    a owl:DatatypeProperty ;
+    rdfs:domain             cie-ont:SpectralLine ;
+    rdfs:range
+        [ a rdfs:Datatype ;
+          owl:oneOf ( "emission"^^xsd:string "absorption"^^xsd:string ) ] ;
+    skos:prefLabel          "emission or absorption"@en ;
+    rdfs:comment
+        "Whether the spectral line arises from emission or absorption."@en .
+
+
+## ── SpectralLine: the main class definition ───────────────────
+##
+## OWL equivalent class (necessary AND sufficient conditions):
+##
+##   SpectralLine ≡ MonochromaticRadiation
+##                ⊓ ∃ associatedWithTransition . QuantumTransition
+##
+## Reading: something is a SpectralLine if and only if it is
+## MonochromaticRadiation AND it is associated with at least one
+## QuantumTransition.
+##
+## This is the formalisation of:
+##   "monochromatic radiation emitted or absorbed in a transition
+##    between two energy levels"
+## ──────────────────────────────────────────────────────────────
+
+cie-ont:SpectralLine
+    a owl:Class ;
+
+    ## Necessary AND sufficient conditions (equivalentClass)
+    ## This is what enables a reasoner to INFER that something is a SpectralLine
+    owl:equivalentClass
+        [ a owl:Class ;
+          owl:intersectionOf (
+              cie-ont:MonochromaticRadiation
+              [ a owl:Restriction ;
+                owl:onProperty   cie-ont:associatedWithTransition ;
+                owl:someValuesFrom cie-ont:QuantumTransition ]
+          ) ] ;
+
+    ## SKOS labels and human-readable metadata — retained alongside OWL
+    skos:prefLabel          "spectral line"@en ;
+    skos:prefLabel          "raie spectrale"@fr ;
+    skos:prefLabel          "Spektrallinie"@de ;
+    skos:definition
+        "monochromatic radiation emitted or absorbed in a transition     between two energy levels"@en ;
+    skos:scopeNote
+        "A spectral line is often observed as a sharp feature in a spectrum."@en ;
+
+    ## Provenance links back to ILV SKOS entry
+    skos:exactMatch         <https://cie.co.at/eilvterm/17-21-016> ;
+
+    ## Cross-vocabulary alignment — OWL sameAs would be too strong;
+    ## skos:closeMatch acknowledges similarity without asserting identity
+    skos:closeMatch
+        <https://goldbook.iupac.org/terms/view/S05777> ;   ## IUPAC
+    skos:closeMatch
+        <http://purl.obolibrary.org/obo/CHMO_0000765> .   ## CHMO ontology
+
+
+## ── What the reasoner can now do — annotated examples ─────────
+
+## Example 1: a dataset asserts a phenomenon is MonochromaticRadiation
+## and is associatedWithTransition some QuantumTransition.
+## The reasoner INFERS it is a SpectralLine — no human tagging needed.
+
+## Example 2: another vocabulary defines SpectralLine as radiation of
+## ANY bandwidth (not only monochromatic). The reasoner detects the
+## owl:equivalentClass axiom is inconsistent with that definition and
+## flags a conflict. Currently this requires a human expert to notice.
+
+## Example 3: a dataset claims something is a SpectralLine but its
+## associated transition has no involvesDepartureLevel. The cardinality
+## constraint on QuantumTransition detects the violation automatically.
+
+
+## ── What was NOT encoded — intentional open-world decisions ───
+
+## Note 1 ("often observed as a sharp feature") is probabilistic.
+## OWL cannot represent "often". It is retained as skos:scopeNote only.
+##
+## The linewidth threshold for "monochromatic" is not numerically
+## defined. The natural language definition is intentionally vague here.
+## Encoding a specific linewidth limit (e.g. < 0.001 nm) would go
+## beyond the ILV definition and require a separate engineering choice.
+## This should be a governance decision, not an ontology engineer's call.
+##
+## The distinction between emission lines and absorption lines is encoded
+## as a datatype property but not as subclasses — the ILV definition
+## treats them as one concept with two modes. Subclassing would impose
+## a stronger commitment than the definition warrants.

@@ -1,0 +1,232 @@
+
+<style>
+.wrap { font-size: 13px; color: var(--color-text-primary); padding: 4px 0 8px; }
+.source-tag { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 20px;
+              background: var(--color-background-info); color: var(--color-text-info);
+              font-weight: 500; margin-bottom: 14px; }
+.dim { margin-bottom: 18px; border: 0.5px solid var(--color-border-tertiary);
+       border-radius: var(--border-radius-lg); overflow: hidden; }
+.dim-header { display: flex; align-items: center; justify-content: space-between;
+              padding: 10px 14px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.dim-letter { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
+              justify-content: center; font-weight: 500; font-size: 13px; flex-shrink: 0; }
+.dim-title { font-weight: 500; font-size: 13px; margin-left: 10px; flex: 1; }
+.dim-score { font-size: 12px; color: var(--color-text-secondary); }
+.check-row { display: grid; grid-template-columns: 18px 1fr auto;
+             gap: 10px; align-items: start; padding: 8px 14px;
+             border-bottom: 0.5px solid var(--color-border-tertiary); cursor: pointer; }
+.check-row:last-child { border-bottom: none; }
+.check-row:hover { background: var(--color-background-secondary); }
+.check-row.checked { background: var(--color-background-success); }
+.check-box { width: 16px; height: 16px; border-radius: 3px; border: 1.5px solid var(--color-border-secondary);
+             flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+             margin-top: 1px; transition: all 0.12s; }
+.check-row.checked .check-box { background: #1D9E75; border-color: #1D9E75; }
+.check-mark { display: none; width: 10px; height: 10px; }
+.check-row.checked .check-mark { display: block; }
+.check-text { font-size: 12px; line-height: 1.5; color: var(--color-text-primary); }
+.check-row.checked .check-text { color: #085041; }
+.check-note { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+.check-row.checked .check-note { color: #0F6E56; }
+.foops-ref { font-size: 10px; color: var(--color-text-tertiary); white-space: nowrap; }
+.check-row.checked .foops-ref { color: #1D9E75; }
+.totals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
+.tot-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md);
+            padding: 8px 10px; text-align: center; }
+.tot-letter { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 2px; }
+.tot-val { font-size: 18px; font-weight: 500; }
+.tot-denom { font-size: 11px; color: var(--color-text-secondary); }
+.overall { margin-top: 10px; padding: 10px 14px; border-radius: var(--border-radius-md);
+           border: 0.5px solid var(--color-border-secondary); display: flex;
+           align-items: center; justify-content: space-between; }
+.overall-label { font-size: 12px; color: var(--color-text-secondary); }
+.overall-score { font-size: 22px; font-weight: 500; }
+.progress-bar { height: 4px; background: var(--color-border-tertiary); border-radius: 2px;
+                margin-top: 6px; overflow: hidden; }
+.progress-fill { height: 100%; background: #1D9E75; border-radius: 2px;
+                 transition: width 0.3s; }
+</style>
+
+<div class="wrap">
+<div class="source-tag">FOOPS! — Garijo, Corcho &amp; Poveda-Villalón (ISWC 2021) · adapted as self-assessment</div>
+
+<div class="dim" id="dim-F">
+<div class="dim-header">
+  <div class="dim-letter" style="background:#E1F5EE;color:#085041;">F</div>
+  <span class="dim-title">Findable — can users and machines discover this vocabulary?</span>
+  <span class="dim-score" id="score-F">0 / 7</span>
+</div>
+<div class="check-row" onclick="toggle(this,'F')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary has a resolvable URI — typing it into a browser returns a readable page</div><div class="check-note">Basic HTTP resolution test</div></div>
+  <span class="foops-ref">FIND1</span>
+</div>
+<div class="check-row" onclick="toggle(this,'F')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary URI is persistent — managed via w3id.org, purl.org, or a documented long-term policy</div><div class="check-note">Not just a server URL that could break on infrastructure change</div></div>
+  <span class="foops-ref">FIND2</span>
+</div>
+<div class="check-row" onclick="toggle(this,'F')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">A version IRI exists and resolves — users can access a specific release, not just "latest"</div><div class="check-note">e.g. https://w3id.org/myvocab/1.2/</div></div>
+  <span class="foops-ref">FIND3</span>
+</div>
+<div class="check-row" onclick="toggle(this,'F')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary's own identifier (owl:ontologyIRI or skos:ConceptScheme URI) matches its published URI</div><div class="check-note">No mismatch between declared ID and access location</div></div>
+  <span class="foops-ref">FIND4</span>
+</div>
+<div class="check-row" onclick="toggle(this,'F')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Minimum metadata is present: title, description, version number, creation date</div><div class="check-note">Without these, automated catalogues cannot index the vocabulary</div></div>
+  <span class="foops-ref">FIND5</span>
+</div>
+<div class="check-row" onclick="toggle(this,'F')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary's namespace prefix is registered in a public prefix registry (prefix.cc or Linked Open Vocabularies)</div><div class="check-note">Allows short-form references (e.g. vim: instead of full URI)</div></div>
+  <span class="foops-ref">FIND6</span>
+</div>
+<div class="check-row" onclick="toggle(this,'F')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary is registered in at least one public catalogue or repository (LOV, a domain registry, or a data portal)</div><div class="check-note">Enables discovery by systems that don't already know the URI</div></div>
+  <span class="foops-ref">FIND7</span>
+</div>
+</div>
+
+<div class="dim" id="dim-A">
+<div class="dim-header">
+  <div class="dim-letter" style="background:#E6F1FB;color:#0C447C;">A</div>
+  <span class="dim-title">Accessible — can humans and machines retrieve it through open protocols?</span>
+  <span class="dim-score" id="score-A">0 / 5</span>
+</div>
+<div class="check-row" onclick="toggle(this,'A')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary URI uses HTTP or HTTPS — open, standardised protocol</div><div class="check-note">Not a proprietary protocol or login-required endpoint</div></div>
+  <span class="foops-ref">ACC1</span>
+</div>
+<div class="check-row" onclick="toggle(this,'A')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Content negotiation is implemented — the same URI returns HTML to browsers and RDF to machines depending on the Accept header</div><div class="check-note">Single URI, multiple representations</div></div>
+  <span class="foops-ref">ACC2</span>
+</div>
+<div class="check-row" onclick="toggle(this,'A')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">A human-readable HTML page for the vocabulary (and ideally each term) is publicly available without login</div><div class="check-note">Accessible to people, not just machines</div></div>
+  <span class="foops-ref">ACC3</span>
+</div>
+<div class="check-row" onclick="toggle(this,'A')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary is hosted on a stable, openly accessible server with no paywall or access restrictions</div><div class="check-note">Long-term availability commitment</div></div>
+  <span class="foops-ref">ACC4</span>
+</div>
+<div class="check-row" onclick="toggle(this,'A')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary is available in a public registry with open access (reinforces both A and F)</div><div class="check-note">Redundant archival pathway if primary host changes</div></div>
+  <span class="foops-ref">ACC5</span>
+</div>
+</div>
+
+<div class="dim" id="dim-I">
+<div class="dim-header">
+  <div class="dim-letter" style="background:#EEEDFE;color:#3C3489;">I</div>
+  <span class="dim-title">Interoperable — can it be combined with other vocabularies by humans and machines?</span>
+  <span class="dim-score" id="score-I">0 / 6</span>
+</div>
+<div class="check-row" onclick="toggle(this,'I')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary is available in at least one RDF serialisation (Turtle, JSON-LD, or RDF/XML)</div><div class="check-note">Minimum interoperability threshold</div></div>
+  <span class="foops-ref">INT1</span>
+</div>
+<div class="check-row" onclick="toggle(this,'I')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Vocabulary metadata uses widely adopted vocabularies: Dublin Core (dcterms:), Schema.org, PROV-O, or DCAT</div><div class="check-note">Not a proprietary metadata schema</div></div>
+  <span class="foops-ref">INT2</span>
+</div>
+<div class="check-row" onclick="toggle(this,'I')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Terms are structured using W3C SKOS (skos:prefLabel, skos:definition, skos:broader/narrower) or OWL</div><div class="check-note">Standard concept model — not custom properties</div></div>
+  <span class="foops-ref">INT3</span>
+</div>
+<div class="check-row" onclick="toggle(this,'I')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">The vocabulary explicitly extends, imports, or maps to at least one external vocabulary</div><div class="check-note">e.g. skos:exactMatch, owl:imports, rdfs:subClassOf an external class</div></div>
+  <span class="foops-ref">INT4</span>
+</div>
+<div class="check-row" onclick="toggle(this,'I')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Preferred labels (skos:prefLabel) are provided in at least one language with an explicit language tag</div><div class="check-note">e.g. "unit of measurement"@en not just a plain literal</div></div>
+  <span class="foops-ref">INT5</span>
+</div>
+<div class="check-row" onclick="toggle(this,'I')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Multiple serialisation formats are provided (e.g. both Turtle and JSON-LD), or a SPARQL endpoint is available</div><div class="check-note">Different downstream systems prefer different formats</div></div>
+  <span class="foops-ref">INT6</span>
+</div>
+</div>
+
+<div class="dim" id="dim-R">
+<div class="dim-header">
+  <div class="dim-letter" style="background:#FAEEDA;color:#633806;">R</div>
+  <span class="dim-title">Reusable — are terms described, licensed, and documented for reuse without contacting the authors?</span>
+  <span class="dim-score" id="score-R">0 / 6</span>
+</div>
+<div class="check-row" onclick="toggle(this,'R')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">A license is explicitly stated and resolvable as a URI (e.g. https://creativecommons.org/licenses/by/4.0/)</div><div class="check-note">Machine-readable license — not just "free to use" in plain text</div></div>
+  <span class="foops-ref">REUSE1</span>
+</div>
+<div class="check-row" onclick="toggle(this,'R')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Extensive metadata is provided: creator (linked to ORCID/ROR), contributor, publisher, creation and modification dates</div><div class="check-note">Not just a title and version — full provenance chain</div></div>
+  <span class="foops-ref">REUSE2</span>
+</div>
+<div class="check-row" onclick="toggle(this,'R')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Every term has a human-readable label (skos:prefLabel or rdfs:label) and a definition (skos:definition or rdfs:comment)</div><div class="check-note">No unlabelled or undefined terms</div></div>
+  <span class="foops-ref">REUSE3</span>
+</div>
+<div class="check-row" onclick="toggle(this,'R')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Provenance metadata is present: source of terms (dcterms:source), version history, and change notes (skos:changeNote)</div><div class="check-note">Users can trace where definitions came from</div></div>
+  <span class="foops-ref">REUSE4</span>
+</div>
+<div class="check-row" onclick="toggle(this,'R')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">An HTML documentation page is generated and published (e.g. via WIDOCO or equivalent) for human browsing</div><div class="check-note">Separate from the machine-readable RDF file</div></div>
+  <span class="foops-ref">REUSE5</span>
+</div>
+<div class="check-row" onclick="toggle(this,'R')">
+  <div class="check-box"><svg class="check-mark" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="check-text">Semantic versioning is applied (Major.Minor.Patch) and the current version is declared in the vocabulary metadata</div><div class="check-note">Users can cite a specific version unambiguously</div></div>
+  <span class="foops-ref">REUSE6</span>
+</div>
+</div>
+
+<div class="totals">
+  <div class="tot-card"><div class="tot-letter">F</div><div class="tot-val"><span id="tF">0</span><span class="tot-denom">/7</span></div></div>
+  <div class="tot-card"><div class="tot-letter">A</div><div class="tot-val"><span id="tA">0</span><span class="tot-denom">/5</span></div></div>
+  <div class="tot-card"><div class="tot-letter">I</div><div class="tot-val"><span id="tI">0</span><span class="tot-denom">/6</span></div></div>
+  <div class="tot-card"><div class="tot-letter">R</div><div class="tot-val"><span id="tR">0</span><span class="tot-denom">/6</span></div></div>
+</div>
+<div class="overall">
+  <span class="overall-label">Overall FOOPS! score (self-assessed)</span>
+  <span class="overall-score"><span id="pct">0</span>%</span>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="bar" style="width:0%"></div></div>
+</div>
+
+<script>
+const counts = {F:0,A:0,I:0,R:0};
+const totals = {F:7,A:5,I:6,R:6};
+function toggle(row, dim) {
+  row.classList.toggle('checked');
+  counts[dim] = row.parentElement.querySelectorAll('.check-row.checked').length;
+  document.getElementById('score-'+dim).textContent = counts[dim]+' / '+totals[dim];
+  document.getElementById('t'+dim).textContent = counts[dim];
+  const total = Object.values(counts).reduce((a,b)=>a+b,0);
+  const max = Object.values(totals).reduce((a,b)=>a+b,0);
+  const pct = Math.round(total/max*100);
+  document.getElementById('pct').textContent = pct;
+  document.getElementById('bar').style.width = pct+'%';
+}
+</script>

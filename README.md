@@ -1,1 +1,2 @@
-# JSIvocabularies
+# JSI vocabularies
+The topic of the JSI March 2026 workshop was on Vocabularies and the FAIR principles. One outcome was that some  minimum necessary structure/specifications and a richer metadata profile shall be drafted, building on the examples produced during the workshop. 

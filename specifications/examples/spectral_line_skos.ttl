@@ -1,0 +1,41 @@
+## =============================================================
+## FILE 1 — spectral_line_skos.ttl
+## SKOS encoding — what ILV already has (or could publish as-is)
+## No reasoning possible beyond label lookup and hierarchy traversal
+## =============================================================
+
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix cie:     <https://cie.co.at/eilvterm/> .
+@prefix schema:  <https://schema.org/> .
+
+cie:17-21-016
+    a skos:Concept ;
+
+    ## Labels
+    skos:prefLabel          "spectral line"@en ;
+
+    ## Definition — natural language only, no machine-interpretable structure
+    skos:definition
+        "monochromatic radiation emitted or absorbed in a transition \
+         between two energy levels"@en ;
+
+    ## Scope notes (Notes 1–3 from ILV entry)
+    skos:scopeNote
+        "A spectral line is often observed as a sharp feature in a spectrum."@en ;
+    skos:changeNote
+        "This entry was numbered 845-01-09 in IEC 60050-845:1987."@en ;
+    skos:changeNote
+        "This entry was numbered 17-1218 in CIE S 017:2011."@en ;
+
+    ## Provenance
+    dcterms:source          <https://cie.co.at/eilvterm/17-21-016> ;
+    dcterms:isPartOf        <https://cie.co.at/eilv> ;
+
+    ## Hierarchy — what a reasoner CAN traverse in SKOS
+    skos:broader            cie:17-21-001 ;   ## radiation (placeholder URI)
+
+    ## Mapping to related vocabulary — no logical import, just a link
+    skos:closeMatch         <https://goldbook.iupac.org/terms/view/S05777> .
+                            ## IUPAC Gold Book: spectral line

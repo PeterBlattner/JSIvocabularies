@@ -1,0 +1,220 @@
+
+<style>
+.wrap2 { font-size: 13px; color: var(--color-text-primary); padding: 4px 0 8px; }
+.source-tag2 { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 20px;
+               background: var(--color-background-warning); color: var(--color-text-warning);
+               font-weight: 500; margin-bottom: 14px; }
+.dim2 { margin-bottom: 16px; border: 0.5px solid var(--color-border-tertiary);
+        border-radius: var(--border-radius-lg); overflow: hidden; }
+.dh2 { display: flex; align-items: center; justify-content: space-between;
+        padding: 10px 14px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.dl2 { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
+        justify-content: center; font-weight: 500; font-size: 13px; flex-shrink: 0; }
+.dt2 { font-weight: 500; font-size: 13px; margin-left: 10px; flex: 1; }
+.ds2 { font-size: 12px; color: var(--color-text-secondary); }
+.cr2 { display: grid; grid-template-columns: 18px 1fr auto;
+        gap: 10px; align-items: start; padding: 8px 14px;
+        border-bottom: 0.5px solid var(--color-border-tertiary); cursor: pointer; }
+.cr2:last-child { border-bottom: none; }
+.cr2:hover { background: var(--color-background-secondary); }
+.cr2.checked { background: #FFF9EC; }
+.cb2 { width: 16px; height: 16px; border-radius: 3px; border: 1.5px solid var(--color-border-secondary);
+        flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+        margin-top: 1px; transition: all 0.12s; }
+.cr2.checked .cb2 { background: #BA7517; border-color: #BA7517; }
+.cm2 { display: none; width: 10px; height: 10px; }
+.cr2.checked .cm2 { display: block; }
+.ct2 { font-size: 12px; line-height: 1.5; color: var(--color-text-primary); }
+.cr2.checked .ct2 { color: #412402; }
+.cn2 { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+.cr2.checked .cn2 { color: #633806; }
+.rule-ref { font-size: 10px; color: var(--color-text-tertiary); white-space: nowrap; }
+.cr2.checked .rule-ref { color: #BA7517; }
+.totals2 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 16px; }
+.tc2 { background: var(--color-background-secondary); border-radius: var(--border-radius-md);
+        padding: 8px 6px; text-align: center; }
+.tl2 { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 2px; }
+.tv2 { font-size: 17px; font-weight: 500; }
+.td2 { font-size: 11px; color: var(--color-text-secondary); }
+.ov2 { margin-top: 10px; padding: 10px 14px; border-radius: var(--border-radius-md);
+        border: 0.5px solid var(--color-border-secondary); display: flex;
+        align-items: center; justify-content: space-between; }
+.ol2 { font-size: 12px; color: var(--color-text-secondary); }
+.os2 { font-size: 22px; font-weight: 500; }
+.pb2 { height: 4px; background: var(--color-border-tertiary); border-radius: 2px;
+        margin-top: 6px; overflow: hidden; }
+.pf2 { height: 100%; background: #BA7517; border-radius: 2px; transition: width 0.3s; }
+</style>
+
+<div class="wrap2">
+<div class="source-tag2">Cox, Gonzalez-Beltran, Magagna &amp; Marinescu — PLOS Comput Biol 17(6) 2021 · adapted as self-assessment</div>
+
+<div class="dim2">
+<div class="dh2">
+  <div class="dl2" style="background:#E1F5EE;color:#085041;">F</div>
+  <span class="dt2">Findable — identity and discoverability</span>
+  <span class="ds2" id="s2-F">0 / 4</span>
+</div>
+<div class="cr2" onclick="tog2(this,'F')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Every concept in the vocabulary has a globally unique, persistent, resolvable identifier (IRI/URI)</div><div class="cn2">Rule 1 — the single most important step: one URI per concept, not just one URI for the whole vocabulary</div></div>
+  <span class="rule-ref">Rule 1</span>
+</div>
+<div class="cr2" onclick="tog2(this,'F')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">The vocabulary is registered in a public catalogue so it can be discovered by systems that do not already know the URI</div><div class="cn2">Rule 2 — registration in LOV, a domain registry, or a data portal</div></div>
+  <span class="rule-ref">Rule 2</span>
+</div>
+<div class="cr2" onclick="tog2(this,'F')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">The IRI pattern follows a documented policy with a long-term persistence commitment (w3id.org, purl.org, or institutional)</div><div class="cn2">Rule 1 sub-requirement — a web URL is not the same as a persistent IRI</div></div>
+  <span class="rule-ref">Rule 1b</span>
+</div>
+<div class="cr2" onclick="tog2(this,'F')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Versioned IRIs exist: a "latest" IRI and version-specific IRIs both resolve correctly and are documented</div><div class="cn2">Rule 1c — users can cite a fixed version, not just the current state</div></div>
+  <span class="rule-ref">Rule 1c</span>
+</div>
+</div>
+
+<div class="dim2">
+<div class="dh2">
+  <div class="dl2" style="background:#E6F1FB;color:#0C447C;">A</div>
+  <span class="dt2">Accessible — hosting and licensing</span>
+  <span class="ds2" id="s2-A">0 / 3</span>
+</div>
+<div class="cr2" onclick="tog2(this,'A')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">The vocabulary is hosted on a stable, openly accessible server — no login required, no paywall</div><div class="cn2">Rule 3 — hosting must be reliable and openly available in the long term</div></div>
+  <span class="rule-ref">Rule 3</span>
+</div>
+<div class="cr2" onclick="tog2(this,'A')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">A machine-readable license is declared (e.g. dcterms:license pointing to a CC-BY URI) — not just stated in plain text</div><div class="cn2">Rule 3b — without a machine-readable license, automated systems treat the vocabulary as restricted</div></div>
+  <span class="rule-ref">Rule 3b</span>
+</div>
+<div class="cr2" onclick="tog2(this,'A')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Both human-readable (HTML) and machine-readable (RDF) representations are served from the same URI via content negotiation or clearly signposted download links</div><div class="cn2">Rule 3c — same URI, different formats for humans and machines</div></div>
+  <span class="rule-ref">Rule 3c</span>
+</div>
+</div>
+
+<div class="dim2">
+<div class="dh2">
+  <div class="dl2" style="background:#EEEDFE;color:#3C3489;">I</div>
+  <span class="dt2">Interoperable — representation and mappings</span>
+  <span class="ds2" id="s2-I">0 / 4</span>
+</div>
+<div class="cr2" onclick="tog2(this,'I')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">The vocabulary is published in W3C SKOS serialised as RDF — using skos:prefLabel, skos:definition, skos:broader/narrower as minimum</div><div class="cn2">Rule 4 — SKOS is the pragmatic interoperability standard for most vocabulary types</div></div>
+  <span class="rule-ref">Rule 4</span>
+</div>
+<div class="cr2" onclick="tog2(this,'I')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Top-level concepts are mapped to an upper vocabulary (schema.org, an ISO standard, or a domain upper ontology) using skos:exactMatch or skos:broadMatch</div><div class="cn2">Rule 5 — anchoring to an upper vocabulary enables cross-domain discovery</div></div>
+  <span class="rule-ref">Rule 5</span>
+</div>
+<div class="cr2" onclick="tog2(this,'I')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Explicit mapping relations to at least one related vocabulary in the same domain are present (skos:exactMatch, skos:closeMatch, skos:broadMatch)</div><div class="cn2">Rule 5b — mappings are the connective tissue of the vocabulary network</div></div>
+  <span class="rule-ref">Rule 5b</span>
+</div>
+<div class="cr2" onclick="tog2(this,'I')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Preferred labels are provided with explicit language tags in at least the primary working language; multilingual labels provided where relevant</div><div class="cn2">Rule 4b — plain literals without language tags are not interoperable across multilingual systems</div></div>
+  <span class="rule-ref">Rule 4b</span>
+</div>
+</div>
+
+<div class="dim2">
+<div class="dh2">
+  <div class="dl2" style="background:#FAEEDA;color:#633806;">R</div>
+  <span class="dt2">Reusable — metadata, definitions and provenance</span>
+  <span class="ds2" id="s2-R">0 / 5</span>
+</div>
+<div class="cr2" onclick="tog2(this,'R')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Vocabulary-level metadata is complete: creator (with ORCID/ROR), publisher, version, date created, date modified, description, scope</div><div class="cn2">Rule 6 — vocabulary metadata following DCTERMS and DCAT</div></div>
+  <span class="rule-ref">Rule 6</span>
+</div>
+<div class="cr2" onclick="tog2(this,'R')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Every term has a minimum of: preferred label, definition (genus-differentia preferred), and source or provenance note</div><div class="cn2">Rule 7 — term-level metadata: a definition sufficient for a user to understand without expert consultation</div></div>
+  <span class="rule-ref">Rule 7</span>
+</div>
+<div class="cr2" onclick="tog2(this,'R')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Scope notes, examples, and alternate labels (synonyms) are provided where helpful for disambiguation</div><div class="cn2">Rule 7b — reduces misapplication by downstream users</div></div>
+  <span class="rule-ref">Rule 7b</span>
+</div>
+<div class="cr2" onclick="tog2(this,'R')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Deprecated terms are retained with owl:deprecated and a skos:changeNote pointing to their successor — they are not deleted</div><div class="cn2">Rule 8 — deletion breaks existing data that uses the old term</div></div>
+  <span class="rule-ref">Rule 8</span>
+</div>
+<div class="cr2" onclick="tog2(this,'R')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Semantic versioning is applied (Major.Minor.Patch) with a documented changelog — users can cite a specific release</div><div class="cn2">Rule 8b — traceability over time</div></div>
+  <span class="rule-ref">Rule 8b</span>
+</div>
+</div>
+
+<div class="dim2">
+<div class="dh2">
+  <div class="dl2" style="background:#FAECE7;color:#712B13;">G</div>
+  <span class="dt2">Governance — sustainability of the vocabulary over time</span>
+  <span class="ds2" id="s2-G">0 / 4</span>
+</div>
+<div class="cr2" onclick="tog2(this,'G')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">The scope of the vocabulary is explicitly defined — what it covers and what it does not cover</div><div class="cn2">Rule 9 (scope) — prevents scope creep and helps users judge applicability</div></div>
+  <span class="rule-ref">Rule 9</span>
+</div>
+<div class="cr2" onclick="tog2(this,'G')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">A named custodian or authority is documented with responsibility for creating, modifying, and retiring terms</div><div class="cn2">Rule 9b — without a named steward, the vocabulary will stagnate or fragment</div></div>
+  <span class="rule-ref">Rule 9b</span>
+</div>
+<div class="cr2" onclick="tog2(this,'G')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">A documented process exists for reviewing, recording and releasing changes — including how community feedback is accepted</div><div class="cn2">Rule 10 — maintenance process with a feedback mechanism</div></div>
+  <span class="rule-ref">Rule 10</span>
+</div>
+<div class="cr2" onclick="tog2(this,'G')">
+  <div class="cb2"><svg class="cm2" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div><div class="ct2">Existing vocabularies in the domain were surveyed and reused where possible before creating new terms</div><div class="cn2">Rule 0 (prerequisite) — avoid unnecessary proliferation; reuse reduces the interoperability burden</div></div>
+  <span class="rule-ref">Rule 0</span>
+</div>
+</div>
+
+<div class="totals2">
+  <div class="tc2"><div class="tl2">F</div><div class="tv2"><span id="t2F">0</span><span class="td2">/4</span></div></div>
+  <div class="tc2"><div class="tl2">A</div><div class="tv2"><span id="t2A">0</span><span class="td2">/3</span></div></div>
+  <div class="tc2"><div class="tl2">I</div><div class="tv2"><span id="t2I">0</span><span class="td2">/4</span></div></div>
+  <div class="tc2"><div class="tl2">R</div><div class="tv2"><span id="t2R">0</span><span class="td2">/5</span></div></div>
+  <div class="tc2"><div class="tl2">G</div><div class="tv2"><span id="t2G">0</span><span class="td2">/4</span></div></div>
+</div>
+<div class="ov2">
+  <span class="ol2">Overall Cox et al. score (self-assessed)</span>
+  <span class="os2"><span id="p2">0</span>%</span>
+</div>
+<div class="pb2"><div class="pf2" id="b2" style="width:0%"></div></div>
+</div>
+
+<script>
+const c2 = {F:0,A:0,I:0,R:0,G:0};
+const t2 = {F:4,A:3,I:4,R:5,G:4};
+function tog2(row, dim) {
+  row.classList.toggle('checked');
+  c2[dim] = row.parentElement.querySelectorAll('.cr2.checked').length;
+  document.getElementById('s2-'+dim).textContent = c2[dim]+' / '+t2[dim];
+  document.getElementById('t2'+dim).textContent = c2[dim];
+  const tot = Object.values(c2).reduce((a,b)=>a+b,0);
+  const mx = Object.values(t2).reduce((a,b)=>a+b,0);
+  const pct = Math.round(tot/mx*100);
+  document.getElementById('p2').textContent = pct;
+  document.getElementById('b2').style.width = pct+'%';
+}
+</script>
