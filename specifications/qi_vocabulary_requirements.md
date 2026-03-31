@@ -49,7 +49,7 @@ These requirements apply to the `skos:ConceptScheme` (or `owl:Ontology`) resourc
 
 **[JSI-L1-04]** The vocabulary IRI **SHALL** match the IRI declared within the vocabulary itself (via `skos:ConceptScheme` or `owl:ontologyIRI`). *Reference: FOOPS! FIND4.*
 
-**[JSI-L2-05]** The vocabulary **SHOULD** register its namespace prefix in a public prefix registry (prefix.cc or the Linked Open Vocabularies catalogue). *Reference: FOOPS! FIND6.*
+**[JSI-L2-05]** The vocabulary **SHOULD** register its namespace prefix in a public prefix registry (prefix.cc, the Linked Open Vocabularies catalogue or a registery to be built up in the JSI community). *Reference: FOOPS! FIND6.*
 
 **[JSI-L2-06]** The vocabulary **SHOULD** be registered in at least one publicly accessible vocabulary catalogue (LOV, a domain registry, or a national or international data portal) to support discovery by systems that do not already know the IRI. *Reference: Cox et al. Rule 2; FOOPS! FIND7.*
 
@@ -61,7 +61,7 @@ These requirements apply to the `skos:ConceptScheme` (or `owl:Ontology`) resourc
 |----------|-------------|------|
 | `dcterms:title` | SHALL | Plain literal; at minimum in English with language tag `@en` |
 | `dcterms:description` | SHALL | Free-text scope statement; `@en` required |
-| `owl:versionInfo` or `dcterms:hasVersion` | SHALL | Semantic version string, e.g. `"3.1.0"` |
+| `owl:versionInfo` | SHALL | Semantic version string, e.g. `"3.1.0"` |
 | `dcterms:created` | SHALL | `xsd:date` literal |
 | `dcterms:modified` | SHALL | `xsd:date` literal; updated on every release |
 | `dcterms:license` | SHALL | Resolvable URI, e.g. `<https://creativecommons.org/licenses/by/4.0/>` |
@@ -79,6 +79,7 @@ These requirements apply to the `skos:ConceptScheme` (or `owl:Ontology`) resourc
 | `dcterms:creator` | SHOULD | URI of the responsible organisation (ROR preferred) |
 | `dcterms:contributor` | SHOULD | URIs of contributing organisations or persons |
 | `dcterms:publisher` | SHOULD | URI of the publishing organisation |
+| `owl:versionIRI` | SHOULD | Stable, resolvable IRI for this specific release `<https://w3id.org/myvocab/1.0.0/>` |
 | `dcterms:source` | SHOULD | URI of the source document or standard |
 | `prov:wasDerivedFrom` | SHOULD | URI of a prior version or source publication |
 | `dcat:keyword` | SHOULD | Keywords as plain literals with language tags |
@@ -261,6 +262,7 @@ JSI:ExampleVocabulary
     ## Identity
     owl:versionIRI       <https://w3id.org/JSI/vocab/example/1.0.0/> ;
     owl:versionInfo      "1.0.0" ;
+    owl:versionIRI       <https://w3id.org/myvocab/1.0.0/> ;
     vann:preferredNamespacePrefix  "JSI-ex" ;
     vann:preferredNamespaceUri     "https://w3id.org/JSI/vocab/example/" ;
 
