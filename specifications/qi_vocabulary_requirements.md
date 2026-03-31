@@ -13,7 +13,7 @@ These requirements define the minimum and recommended metadata structures for QI
 - **Level 2 — rich metadata:** the target for resources actively seeking FAIR compliance and inter-vocabulary interoperability
 - **Level 3 — OWL extension:** optional formal axioms enabling automated reasoning, applicable only where a concrete reasoning use case exists. Level 3 is not yet addressed in this document
 
-Requirements are labelled `[JSI-Ln-nn]` where `n` is the level and `nn` is the sequence number. Conformance verbs follow ISO/IEC Guidelines: **SHALL**, **SHOULD**, **MAY**. n.b. "may" isn't used so far in the document.
+Requirements are labelled `[JSI-nn-Ln]` where `n` is the level and `nn` is the sequence number. Conformance verbs follow ISO/IEC Guidelines: **SHALL**, **SHOULD**, **MAY**.
 
 These requirements align with and extend the following existing specifications:
 
@@ -41,21 +41,21 @@ These requirements apply to the `skos:ConceptScheme` (or `owl:Ontology`) resourc
 
 ### 2.1 Identity and persistence
 
-**[JSI-L1-01]** The vocabulary **SHALL** be identified by a single, globally unique IRI that resolves to a machine-readable representation via HTTP or HTTPS.
+**[JSI-01-L1]** The vocabulary **SHALL** be identified by a single, globally unique IRI that resolves to a machine-readable representation via HTTP or HTTPS.
 
-**[JSI-L1-02]** The vocabulary IRI **SHALL** be persistent. Persistence **SHALL** be ensured either through a recognised persistence infrastructure (w3id.org, purl.org) or through a documented institutional policy committing to IRI stability for a minimum of ten years. *Rationale: the identifier incident discussed at the March 2026 workshop demonstrates the downstream cost of IRI instability.*
+**[JSI-02-L1]** The vocabulary IRI **SHALL** be persistent. Persistence **SHALL** be ensured either through a recognised persistence infrastructure (w3id.org, purl.org) or through a documented institutional policy committing to IRI stability for a minimum of ten years. *Rationale: the identifier incident discussed at the March 2026 workshop demonstrates the downstream cost of IRI instability.*
 
-**[JSI-L1-03]** A version IRI **SHALL** exist and resolve. The version IRI **SHALL** be stable: once published, the content it resolves to **SHALL NOT** change. *Reference: FOOPS! FIND3; Cox et al. Rule 1c.*
+**[JSI-03-L1]** A version IRI **SHALL** exist and resolve. The version IRI **SHALL** be stable: once published, the content it resolves to **SHALL NOT** change. *Reference: FOOPS! FIND3; Cox et al. Rule 1c.*
 
-**[JSI-L1-04]** The vocabulary IRI **SHALL** match the IRI declared within the vocabulary itself (via `skos:ConceptScheme` or `owl:ontologyIRI`). *Reference: FOOPS! FIND4.*
+**[JSI-04-L1]** The vocabulary IRI **SHALL** match the IRI declared within the vocabulary itself (via `skos:ConceptScheme` or `owl:ontologyIRI`). *Reference: FOOPS! FIND4.*
 
-**[JSI-L2-05]** The vocabulary **SHOULD** register its namespace prefix in a public prefix registry (prefix.cc, the Linked Open Vocabularies catalogue or a registery to be built up in the JSI community). *Reference: FOOPS! FIND6.*
+**[JSI-05-L2]** The vocabulary **SHOULD** register its namespace prefix in a public prefix registry (prefix.cc, the Linked Open Vocabularies catalogue or a registery to be built up in the JSI community). *Reference: FOOPS! FIND6.*
 
-**[JSI-L2-06]** The vocabulary **SHOULD** be registered in at least one publicly accessible vocabulary catalogue (LOV, a domain registry, or a national or international data portal) to support discovery by systems that do not already know the IRI. *Reference: Cox et al. Rule 2; FOOPS! FIND7.*
+**[JSI-06-L2]** The vocabulary **SHOULD** be registered in at least one publicly accessible vocabulary catalogue (LOV, a domain registry, or a national or international data portal) to support discovery by systems that do not already know the IRI. *Reference: Cox et al. Rule 2; FOOPS! FIND7.*
 
 ### 2.2 Minimum descriptive metadata
 
-**[JSI-L1-07]** The vocabulary resource **SHALL** carry the following metadata properties:
+**[JSI-07-L1]** The vocabulary resource **SHALL** carry the following metadata properties:
 
 | Property | Requirement | Note |
 |----------|-------------|------|
@@ -68,11 +68,11 @@ These requirements apply to the `skos:ConceptScheme` (or `owl:Ontology`) resourc
 
 *Reference: FOOPS! FIND5, REUSE1; Cox et al. Rule 6.*
 
-**[JSI-L1-08]** The license **SHALL** be expressed as a resolvable URI pointing to a machine-readable license document, not as a plain-text string. A plain-text statement such as "freely usable" does not satisfy this requirement. *Rationale: automated systems treat unlicensed resources as restricted by default.*
+**[JSI-08-L1]** The license **SHALL** be expressed as a resolvable URI pointing to a machine-readable license document, not as a plain-text string. A plain-text statement such as "freely usable" does not satisfy this requirement. *Rationale: automated systems treat unlicensed resources as restricted by default.*
 
 ### 2.3 Rich provenance metadata (Level 2)
 
-**[JSI-L2-09]** The vocabulary **SHOULD** carry the following additional metadata:
+**[JSI-09-L2]** The vocabulary **SHOULD** carry the following additional metadata:
 
 | Property | Requirement | Note |
 |----------|-------------|------|
@@ -83,21 +83,20 @@ These requirements apply to the `skos:ConceptScheme` (or `owl:Ontology`) resourc
 | `dcterms:source` | SHOULD | URI of the source document or standard |
 | `prov:wasDerivedFrom` | SHOULD | URI of a prior version or source publication |
 | `dcat:keyword` | SHOULD | Keywords as plain literals with language tags |
-| `dcat:landingPage` | SHOULD | URI of the human-readable documentation page |
-| `vann:preferredNamespacePrefix` | SHOULD | Short prefix string, e.g. `"vim"` |
-| `vann:preferredNamespaceUri` | SHOULD | Base namespace URI |
+| `dcat:landingPage` | MAY | URI of the human-readable documentation page |
+| `dcterms:bibliographicCitation` | MAY | A bibliographic reference for the resource |
 
-**[JSI-L2-10]** The vocabulary **SHOULD** declare the scope of what it covers and, where relevant, what it explicitly does not cover, using `dcterms:description` or a `skos:scopeNote` on the `skos:ConceptScheme`. *Reference: Cox et al. Rule 9.*
+**[JSI-10-L2]** The vocabulary **SHOULD** declare the scope of what it covers and, where relevant, what it explicitly does not cover, using `dcterms:description` or a `skos:scopeNote` on the `skos:ConceptScheme`. *Reference: Cox et al. Rule 9.*
 
-**[JSI-L2-11]** A named custodian or authority **SHOULD** be identified using `dcterms:creator` or a custom property, with documented responsibility for creating, modifying, and retiring terms. *Reference: Cox et al. Rule 9b.*
+**[JSI-11-L2]** A named custodian or authority **SHOULD** be identified using `dcterms:creator` or a custom property, with documented responsibility for creating, modifying, and retiring terms. *Reference: Cox et al. Rule 9b.*
 
-**[JSI-L2-12]** A documented change process **SHOULD** be referenced or described, including how community feedback is accepted and how changes are released. *Reference: Cox et al. Rule 10.*
+**[JSI-12-L2]** A documented change process **SHOULD** be referenced or described, including how community feedback is accepted and how changes are released. *Reference: Cox et al. Rule 10.*
 
 ### 2.4 Versioning
 
-**[JSI-L1-13]** Version numbers **SHALL** follow Semantic Versioning 2.0.0 (Major.Minor.Patch). A change that removes or substantially redefines an existing term increments the Major version. Addition of new terms increments Minor. Corrections and metadata-only changes increment Patch.
+**[JSI-13-L1]** Version numbers **SHALL** follow Semantic Versioning 2.0.0 (Major.Minor.Patch). A change that removes or substantially redefines an existing term increments the Major version. Addition of new terms increments Minor. Corrections and metadata-only changes increment Patch.
 
-**[JSI-L2-14]** A changelog **SHOULD** be maintained and linked from the vocabulary, recording additions, deprecations, definition changes, and IRI changes per release.
+**[JSI-14-L2]** A changelog **SHOULD** be maintained and linked from the vocabulary, recording additions, deprecations, definition changes, and IRI changes per release.
 
 ---
 
@@ -105,17 +104,17 @@ These requirements apply to the `skos:ConceptScheme` (or `owl:Ontology`) resourc
 
 ### 3.1 Content negotiation
 
-**[JSI-L1-15]** The vocabulary IRI **SHALL** be publicly accessible via HTTP or HTTPS without authentication.
+**[JSI-15-L1]** The vocabulary IRI **SHALL** be publicly accessible via HTTP or HTTPS without authentication.
 
-**[JSI-L2-16]** The vocabulary **SHOULD** support content negotiation: the same IRI **SHOULD** return an HTML representation when accessed by a browser (Accept: text/html) and an RDF representation when accessed by a machine (Accept: application/turtle or Accept: application/rdf+xml). *Reference: FOOPS! ACC2.*
+**[JSI-16-L2]** The vocabulary **SHOULD** support content negotiation: the same IRI **SHOULD** return an HTML representation when accessed by a browser (Accept: text/html) and an RDF representation when accessed by a machine (Accept: application/turtle or Accept: application/rdf+xml). *Reference: FOOPS! ACC2.*
 
-**[JSI-L2-17]** A human-readable HTML documentation page **SHOULD** be published, covering the vocabulary as a whole and each term individually. Tools such as WIDOCO may be used to generate this page automatically from the RDF source. *Reference: FOOPS! REUSE5.*
+**[JSI-17-L2]** A human-readable HTML documentation page **SHOULD** be published, covering the vocabulary as a whole and each term individually. Tools such as WIDOCO may be used to generate this page automatically from the RDF source. *Reference: FOOPS! REUSE5.*
 
 ### 3.2 Serialisation formats
 
-**[JSI-L1-18]** The vocabulary **SHALL** be available in at least one W3C-standard RDF serialisation. Turtle (`.ttl`) is the preferred format for human authoring; JSON-LD (`.jsonld`) is preferred for web publication and API delivery. *Reference: FOOPS! INT1.*
+**[JSI-18-L1]** The vocabulary **SHALL** be available in at least one W3C-standard RDF serialisation. Turtle (`.ttl`) is the preferred format for human authoring; JSON-LD (`.jsonld`) is preferred for web publication and API delivery. *Reference: FOOPS! INT1.*
 
-**[JSI-L2-19]** The vocabulary **SHOULD** be available in at least two serialisation formats. A SPARQL endpoint or a downloadable RDF dump **SHOULD** be provided for large vocabularies. *Reference: FOOPS! INT6.*
+**[JSI-19-L2]** The vocabulary **SHOULD** be available in at least two serialisation formats. A SPARQL endpoint or a downloadable RDF dump **SHOULD** be provided for large vocabularies. *Reference: FOOPS! INT6.*
 
 ---
 
@@ -125,29 +124,29 @@ These requirements apply to each individual `skos:Concept` within the vocabulary
 
 ### 4.1 Identity
 
-**[JSI-L1-20]** Every concept **SHALL** be identified by a persistent, resolvable IRI following the same persistence policy as the vocabulary IRI. *Reference: Cox et al. Rule 1; FOOPS! FIND1.*
+**[JSI-20-L1]** Every concept **SHALL** be identified by a persistent, resolvable IRI following the same persistence policy as the vocabulary IRI. *Reference: Cox et al. Rule 1; FOOPS! FIND1.*
 
-**[JSI-L1-21]** IRI patterns **SHALL** be opaque (e.g. numeric or UUID-based) and **SHALL NOT** encode natural language strings that could change when definitions are revised. Changing a concept IRI is a breaking change and **SHALL** increment the Major version. *Rationale: IRI instability propagates breakage to every vocabulary that uses the identifier as a cross-reference.*
+**[JSI-21-L1]** IRI patterns **SHALL** be opaque (e.g. numeric or UUID-based) and **SHALL NOT** encode natural language strings that could change when definitions are revised. Changing a concept IRI is a breaking change and **SHALL** increment the Major version. *Rationale: IRI instability propagates breakage to every vocabulary that uses the identifier as a cross-reference.*
 
 ### 4.2 Labels
 
-**[JSI-L1-22]** Every concept **SHALL** carry exactly one `skos:prefLabel` per language, tagged with a BCP 47 language tag (e.g. `@en`, `@fr`, `@de`). *Reference: W3C SKOS Reference, S14.*
+**[JSI-22-L1]** Every concept **SHALL** carry exactly one `skos:prefLabel` per language, tagged with a BCP 47 language tag (e.g. `@en`, `@fr`, `@de`). *Reference: W3C SKOS Reference, S14.*
 
-**[JSI-L1-23]** The primary working language of the vocabulary **SHALL** be English. A `skos:prefLabel @en` is therefore mandatory for every concept regardless of whether labels in other languages are provided.
+**[JSI-23-L1]** The primary working language of the vocabulary **SHALL** be English. A `skos:prefLabel @en` is therefore mandatory for every concept regardless of whether labels in other languages are provided.
 
-**[JSI-L2-24]** Labels in additional working languages of the relevant standards bodies (French, German, Spanish, Russian, Japanese, Arabic) **SHOULD** be provided where they exist in the source publication, using `skos:prefLabel` with the appropriate language tag.
+**[JSI-24-L2]** Labels in additional working languages of the relevant standards bodies (French, German, Spanish, Russian, Japanese, Arabic) **SHOULD** be provided where they exist in the source publication, using `skos:prefLabel` with the appropriate language tag.
 
-**[JSI-L2-25]** Synonyms and alternative designations **SHOULD** be recorded using `skos:altLabel` with language tags.
+**[JSI-25-L2]** Synonyms and alternative designations **SHOULD** be recorded using `skos:altLabel` with language tags.
 
-**[JSI-L2-26]** Acronyms and symbol-based identifiers (e.g. SI unit symbols) **SHOULD** be recorded as `skos:altLabel` or, where richer metadata is required, using `skosxl:Label` with `skosxl:literalForm`. *Reference: SKOS-XL specification.*
+**[JSI-26-L2]** Acronyms and symbol-based identifiers (e.g. SI unit symbols) **SHOULD** be recorded as `skos:altLabel` or, where richer metadata is required, using `skosxl:Label` with `skosxl:literalForm`. *Reference: SKOS-XL specification.*
 
 ### 4.3 Definitions and notes
 
-**[JSI-L1-27]** Every concept **SHALL** carry a `skos:definition` in English. The definition **SHALL** be self-sufficient: a reader unfamiliar with the resource should be able to understand the concept's meaning without consulting additional documents. *Reference: Cox et al. Rule 7; FOOPS! REUSE3.*
+**[JSI-27-L1]** Every concept **SHALL** carry a `skos:definition` in English. The definition **SHALL** be self-sufficient: a reader unfamiliar with the resource should be able to understand the concept's meaning without consulting additional documents. *Reference: Cox et al. Rule 7; FOOPS! REUSE3.*
 
-**[JSI-L1-28]** Definitions **SHALL** use genus-differentia structure where applicable: a definition that identifies the broader class of the concept (genus) and the distinguishing characteristics (differentia) is preferred over a purely enumerative or circular definition.
+**[JSI-28-L1]** Definitions **SHALL** use genus-differentia structure where applicable: a definition that identifies the broader class of the concept (genus) and the distinguishing characteristics (differentia) is preferred over a purely enumerative or circular definition.
 
-**[JSI-L2-29]** Notes from the source publication (notes to entry, examples, usage restrictions) **SHOULD** be recorded using the appropriate SKOS note property:
+**[JSI-29-L2]** Notes from the source publication (notes to entry, examples, usage restrictions) **SHOULD** be recorded using the appropriate SKOS note property:
 
 | SKOS property | Use |
 |---------------|-----|
@@ -157,33 +156,33 @@ These requirements apply to each individual `skos:Concept` within the vocabulary
 | `skos:editorialNote` | Internal notes for vocabulary editors (not for end users) |
 | `skos:changeNote` | Record of what changed and when |
 
-**[JSI-L2-30]** The source of each definition **SHOULD** be recorded using `dcterms:source` pointing to the URI of the source document or its section. Where no URI exists, a bibliographic reference in plain text is acceptable as a fallback.
+**[JSI-30-L2]** The source of each definition **SHOULD** be recorded using `dcterms:source` pointing to the URI of the source document or its section. Where no URI exists, a bibliographic reference in plain text is acceptable as a fallback.
 
 ### 4.4 Hierarchy and structure
 
-**[JSI-L1-31]** Hierarchical relationships between concepts **SHALL** be expressed using `skos:broader` and `skos:narrower`. Both directions **SHALL** be declared or derivable via SKOS inference rules. Cycles are forbidden. *Reference: W3C SKOS Reference, S26–S36.*
+**[JSI-31-L1]** Hierarchical relationships between concepts **SHALL** be expressed using `skos:broader` and `skos:narrower`. Both directions **SHALL** be declared or derivable via SKOS inference rules. Cycles are forbidden. *Reference: W3C SKOS Reference, S26–S36.*
 
-**[JSI-L2-32]** Associative (non-hierarchical) relationships between concepts within the same vocabulary **SHOULD** be expressed using `skos:related`. *Reference: ISO 25964-1, clause 11.*
+**[JSI-32-L2]** Associative (non-hierarchical) relationships between concepts within the same vocabulary **SHOULD** be expressed using `skos:related`. *Reference: ISO 25964-1, clause 11.*
 
-**[JSI-L2-33]** Every concept **SHOULD** be assigned to at least one `skos:ConceptScheme` via `skos:inScheme`. Top-level concepts **SHOULD** also be declared with `skos:topConceptOf`. *Reference: W3C SKOS Reference, S4.*
+**[JSI-33-L2]** Every concept **SHOULD** be assigned to at least one `skos:ConceptScheme` via `skos:inScheme`. Top-level concepts **SHOULD** also be declared with `skos:topConceptOf`. *Reference: W3C SKOS Reference, S4.*
 
 ### 4.5 Provenance at concept level
 
-**[JSI-L2-34]** Each concept **SHOULD** carry `dcterms:created` and `dcterms:modified` dates as `xsd:date` literals to enable fine-grained change tracking at the term level.
+**[JSI-34-L2]** Each concept **SHOULD** carry `dcterms:created` and `dcterms:modified` dates as `xsd:date` literals to enable fine-grained change tracking at the term level.
 
-**[JSI-L2-35]** The source document or publication from which the term originates **SHOULD** be recorded using `dcterms:source` or `prov:wasDerivedFrom` at the concept level.
+**[JSI-35-L2]** The source document or publication from which the term originates **SHOULD** be recorded using `dcterms:source` or `prov:wasDerivedFrom` at the concept level.
 
 ### 4.6 Deprecation
 
-**[JSI-L1-36]** When a concept is superseded or withdrawn, it **SHALL NOT** be deleted from the vocabulary. It **SHALL** be marked with `owl:deprecated "true"^^xsd:boolean` and a `skos:changeNote` explaining the reason and pointing to any successor concept. *Reference: Cox et al. Rule 8; rationale: deletion breaks any external resource that references the deprecated IRI.*
+**[JSI-36-L1]** When a concept is superseded or withdrawn, it **SHALL NOT** be deleted from the vocabulary. It **SHALL** be marked with `owl:deprecated "true"^^xsd:boolean` and a `skos:changeNote` explaining the reason and pointing to any successor concept. *Reference: Cox et al. Rule 8; rationale: deletion breaks any external resource that references the deprecated IRI.*
 
-**[JSI-L1-37]** If a concept is replaced by another concept, the relationship **SHOULD** be expressed using `dcterms:isReplacedBy` pointing to the successor IRI.
+**[JSI-37-L1]** If a concept is replaced by another concept, the relationship **SHOULD** be expressed using `dcterms:isReplacedBy` pointing to the successor IRI.
 
 ---
 
 ## 5. Inter-vocabulary alignment requirements
 
-**[JSI-L2-38]** Mappings between concepts in different JSI vocabularies **SHOULD** be expressed using the SKOS mapping properties. The appropriate property SHALL be chosen carefully:
+**[JSI-38-L2]** Mappings between concepts in different JSI vocabularies **SHOULD** be expressed using the SKOS mapping properties. The appropriate property SHALL be chosen carefully:
 
 | Property | Semantics | Use |
 |----------|-----------|-----|
@@ -195,11 +194,11 @@ These requirements apply to each individual `skos:Concept` within the vocabulary
 
 *Reference: ISO 25964-2; W3C SKOS Reference, S54–S57.*
 
-**[JSI-L2-39]** `skos:exactMatch` **SHALL NOT** be used where definitional differences exist between the two concepts. Where doubt exists, `skos:closeMatch` is the safer choice.
+**[JSI-39-L2]** `skos:exactMatch` **SHALL NOT** be used where definitional differences exist between the two concepts. Where doubt exists, `skos:closeMatch` is the safer choice.
 
-**[JSI-L2-40]** At least one mapping to a concept in a related JSI vocabulary or an upper vocabulary (QUDT, Schema.org, a relevant ISO standard) **SHOULD** be provided for each concept where such a mapping exists. *Reference: Cox et al. Rule 5.*
+**[JSI-40-L2]** At least one mapping to a concept in a related JSI vocabulary or an upper vocabulary (QUDT, Schema.org, a relevant ISO standard) **SHOULD** be provided for each concept where such a mapping exists. *Reference: Cox et al. Rule 5.*
 
-**[JSI-L2-41]** Before introducing a new concept into a JSI vocabulary, existing JSI vocabularies and relevant external resources **SHOULD** be surveyed to determine whether the concept already exists and can be reused or referenced. *Reference: Cox et al. Rule 0.*
+**[JSI-41-L2]** Before introducing a new concept into a JSI vocabulary, existing JSI vocabularies and relevant external resources **SHOULD** be surveyed to determine whether the concept already exists and can be reused or referenced. *Reference: Cox et al. Rule 0.*
 
 ---
 
@@ -251,7 +250,6 @@ The following template illustrates the recommended structure under Level 2. It e
 @prefix prov:    <http://www.w3.org/ns/prov#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix vann:    <http://purl.org/vocab/vann/> .
 @prefix JSI:      <https://w3id.org/JSI/vocab/example/> .
 
 ## ── Vocabulary (ConceptScheme) ─────────────────────────────────
@@ -263,8 +261,6 @@ JSI:ExampleVocabulary
     owl:versionIRI       <https://w3id.org/JSI/vocab/example/1.0.0/> ;
     owl:versionInfo      "1.0.0" ;
     owl:versionIRI       <https://w3id.org/myvocab/1.0.0/> ;
-    vann:preferredNamespacePrefix  "JSI-ex" ;
-    vann:preferredNamespaceUri     "https://w3id.org/JSI/vocab/example/" ;
 
     ## Descriptive metadata
     dcterms:title        "Example JSI vocabulary"@en ;
@@ -325,52 +321,20 @@ JSI:C001
     skos:closeMatch      <http://qudt.org/vocab/quantitykind/Energy> .
 ```
 
----
-
-## 8. Conformance levels summary
-
-| Requirement | Level 1 (minimum) | Level 2 (rich) |
-|-------------|:-----------------:|:---------------:|
-| Persistent, resolvable vocabulary IRI | **SHALL** | **SHALL** |
-| Version IRI | **SHALL** | **SHALL** |
-| Title, description, version, dates, license | **SHALL** | **SHALL** |
-| Creator, publisher, source, provenance | — | **SHOULD** |
-| Prefix registry registration | — | **SHOULD** |
-| Catalogue registration (LOV etc.) | — | **SHOULD** |
-| Content negotiation (HTML + RDF) | — | **SHOULD** |
-| HTML documentation page | — | **SHOULD** |
-| Turtle serialisation | **SHALL** | **SHALL** |
-| Second serialisation format | — | **SHOULD** |
-| Per-concept persistent IRI | **SHALL** | **SHALL** |
-| Opaque IRI pattern | **SHALL** | **SHALL** |
-| `skos:prefLabel @en` per concept | **SHALL** | **SHALL** |
-| Labels in additional languages | — | **SHOULD** |
-| `skos:definition @en` per concept | **SHALL** | **SHALL** |
-| Genus-differentia definition structure | **SHALL** | **SHALL** |
-| Scope notes, examples, history notes | — | **SHOULD** |
-| `dcterms:source` per concept | — | **SHOULD** |
-| Concept-level dates | — | **SHOULD** |
-| `skos:broader` / `skos:narrower` hierarchy | **SHALL** | **SHALL** |
-| Deprecated terms retained with `owl:deprecated` | **SHALL** | **SHALL** |
-| Cross-vocabulary SKOS mappings | — | **SHOULD** |
-| Survey of existing resources before new terms | — | **SHOULD** |
-| Scope and custodian documented | — | **SHOULD** |
-| Semantic versioning | **SHALL** | **SHALL** |
-| Changelog | — | **SHOULD** |
 
 ---
 
 ## 9. Notes on implementation for JSI vocabularies
 
-**On IRI persistence.** The March 2026 workshop surfaced a concrete case where one organisation plans to change term identifiers without informing other organisations that were referencing those identifiers. Level 1 requirement [JSI-L1-02] directly addresses this: persistence is not a technical nicety but a commitment to the network of organisations that depend on the identifiers. Any planned change to existing concept IRIs SHALL be communicated to all known consumers before the change is made, and deprecated IRIs SHALL continue to resolve.
+**On IRI persistence.** The March 2026 workshop surfaced a concrete case where one organisation plans to change term identifiers without informing other organisations that were referencing those identifiers. Level 1 requirement [JSI-02-L1] directly addresses this: persistence is not a technical nicety but a commitment to the network of organisations that depend on the identifiers. Any planned change to existing concept IRIs SHALL be communicated to all known consumers before the change is made, and deprecated IRIs SHALL continue to resolve.
 
-**On definition quality.** Many JSI vocabulary definitions were written for human experts reading a printed standard. Translating them into SKOS does not automatically make them self-sufficient. Requirement [JSI-L1-27] calls for definitions that work without the surrounding context of the source document. This will often require editorial work beyond simple copy-paste.
+**On definition quality.** Many JSI vocabulary definitions were written for human experts reading a printed standard. Translating them into SKOS does not automatically make them self-sufficient. Requirement [JSI-27-L1] calls for definitions that work without the surrounding context of the source document. This will often require editorial work beyond simple copy-paste.
 
 **On multilingual labels.** Several JSI organisations operate across multiple official languages. Where translations already exist in source publications, they should be captured in SKOS from the outset — retrofitting translations later is significantly more expensive. The priority languages for JSI vocabularies are English (mandatory), French, German, Spanish, Russian, Japanese, and Arabic.
 
 **On the FAIR assessment gap.** The March 2026 workshop observed a 15-percentage-point difference between internal and external FAIR assessments of the same vocabulary. This suggests that conformance verification should routinely include an external assessment alongside the self-assessment. The FOOPS! automated validator (foops.linkeddata.es) provides an objective baseline independent of both perspectives.
 
-**On reuse before creation.** Requirement [JSI-L2-41] reflects a key finding from the workshop: the quality infrastructure already contains substantial definitional overlap across vocabularies. Before introducing a new concept, the existing JSI vocabulary landscape should be surveyed — using the relationship mapping approach developed during the workshop — to determine whether the concept already exists elsewhere and can be referenced rather than duplicated.
+**On reuse before creation.** Requirement [JSI-41-L2] reflects a key finding from the workshop: the quality infrastructure already contains substantial definitional overlap across vocabularies. Before introducing a new concept, the existing JSI vocabulary landscape should be surveyed — using the relationship mapping approach developed during the workshop — to determine whether the concept already exists elsewhere and can be referenced rather than duplicated.
 
 ---
 
